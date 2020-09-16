@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tv_nav"
+    app:startDestination="@id/main">
+
+    <fragment android:id="@+id/main"
+        android:name="com.cbs.demospike.MainFragment"
+        android:label="fragment_main">
+        <action
+            android:id="@+id/action_main_to_detail"
+            app:destination="@id/detail" >
+            <argument
+                android:name="item"
+                app:argType="long" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/detail"
+        android:name="com.cbs.demospike.VideoDetailsFragment"
+        android:label="fragment_detail">
+        <argument
+            android:name="item"
+            app:argType="long" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="https://www.example.com/shows/{item}" />
+    </fragment>
+</navigation>

@@ -29,22 +29,22 @@ class BrowseErrorActivity : Activity() {
     private fun testError() {
         mErrorFragment = ErrorFragment()
         fragmentManager
-                .beginTransaction()
-                .add(R.id.main_browse_fragment, mErrorFragment)
-                .commit()
+            .beginTransaction()
+            .add(R.id.main, mErrorFragment)
+            .commit()
 
         mSpinnerFragment = SpinnerFragment()
         fragmentManager
-                .beginTransaction()
-                .add(R.id.main_browse_fragment, mSpinnerFragment)
-                .commit()
+            .beginTransaction()
+            .add(R.id.main, mSpinnerFragment)
+            .commit()
 
         val handler = Handler()
         handler.postDelayed({
             fragmentManager
-                    .beginTransaction()
-                    .remove(mSpinnerFragment)
-                    .commit()
+                .beginTransaction()
+                .remove(mSpinnerFragment)
+                .commit()
             mErrorFragment.setErrorContent()
         }, TIMER_DELAY)
     }
