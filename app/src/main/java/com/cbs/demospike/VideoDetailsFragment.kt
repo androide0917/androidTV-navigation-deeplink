@@ -40,11 +40,11 @@ class VideoDetailsFragment : DetailsSupportFragment() {
 
         mDetailsBackground = DetailsSupportFragmentBackgroundController(this)
 
-        if(item.toInt() >= MovieList.list.size) {
+        if(item >= MovieList.list.size) {
             activity?.redirectToMain()
             return
         }
-        mSelectedMovie = MovieList.list[item.toInt()]
+        mSelectedMovie = MovieList.list[item]
         if (mSelectedMovie != null) {
             mPresenterSelector = ClassPresenterSelector()
             mAdapter = ArrayObjectAdapter(mPresenterSelector)

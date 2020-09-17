@@ -18,6 +18,7 @@ import androidx.leanback.app.BrowseFragment
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.*
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import com.bumptech.glide.request.animation.GlideAnimation
@@ -122,7 +123,7 @@ class MainFragment : BrowseSupportFragment() {
             row: Row
         ) {
             if (item is Movie) {
-                val action = MainFragmentDirections.actionMainToDetail(item.id)
+                val action = MainFragmentDirections.actionMainToDetail(item.id.toInt())
                 view?.findNavController()?.navigate(action)
             } else if (item is String) {
                 if (item.contains(getString(R.string.error_fragment))) {

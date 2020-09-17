@@ -12,7 +12,7 @@ object MovieList {
     val list: List<Movie> by lazy {
         setupMovies()
     }
-    private var count: Long = 0
+    private var count: Int = 0
 
     private fun setupMovies(): List<Movie> {
         val title = arrayOf(

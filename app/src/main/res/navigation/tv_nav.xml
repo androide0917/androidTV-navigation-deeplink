@@ -16,7 +16,8 @@
             app:popExitAnim="@anim/slide_out_right">
             <argument
                 android:name="item"
-                app:argType="long" />
+                app:argType="integer"
+                android:defaultValue="-1"/>
         </action>
     </fragment>
     <fragment
@@ -25,7 +26,7 @@
         android:label="fragment_detail">
         <argument
             android:name="item"
-            app:argType="long" />
+            app:argType="integer" />
         <deepLink
             android:id="@+id/deepLink"
             app:uri="https://www.example.com/shows/{item}" />
