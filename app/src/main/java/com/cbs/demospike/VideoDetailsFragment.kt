@@ -6,11 +6,13 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.leanback.app.DetailsSupportFragment
 import androidx.leanback.app.DetailsSupportFragmentBackgroundController
 import androidx.leanback.widget.*
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.GlideDrawable
 import com.bumptech.glide.request.animation.GlideAnimation
@@ -44,7 +46,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             activity?.redirectToMain()
             return
         }
-        mSelectedMovie = MovieList.list[item]
+        mSelectedMovie = MovieList.list.firstOrNull { it.id == item }
         if (mSelectedMovie != null) {
             mPresenterSelector = ClassPresenterSelector()
             mAdapter = ArrayObjectAdapter(mPresenterSelector)
@@ -139,7 +141,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
 
         detailsPresenter.onActionClickedListener = OnActionClickedListener { action ->
             if (action.id == ACTION_WATCH_TRAILER) {
-                //TODO: replace by navController
+                //VideoPlayer runs on separate Activity
                 val intent = Intent(activity, PlaybackActivity::class.java)
                 intent.putExtra(MOVIE, mSelectedMovie)
                 startActivity(intent)
@@ -177,18 +179,8 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             rowViewHolder: RowPresenter.ViewHolder,
             row: Row) {
             if (item is Movie) {
-                //TODO: replace by navController
-                Log.d(TAG, "Item: " + item.toString())
-                /*val intent = Intent(activity, DetailsActivity::class.java)
-                intent.putExtra(resources.getString(R.string.movie), mSelectedMovie)
-
-                val bundle =
-                        ActivityOptionsCompat.makeSceneTransitionAnimation(
-                                activity,
-                                (itemViewHolder?.view as ImageCardView).mainImageView,
-                                DetailsActivity.SHARED_ELEMENT_NAME)
-                                .toBundle()
-                activity.startActivity(intent, bundle)*/
+                val action = VideoDetailsFragmentDirections.actionDetailSelf(item.id)
+                view?.findNavController()?.navigate(action)
             }
         }
     }

@@ -24,7 +24,7 @@ class MainActivity : FragmentActivity() {
         fragmentManager: FragmentManager,
         intent: Intent
     ) {
-        navGraphIds.forEachIndexed { index, navGraphId ->
+        navGraphIds.forEachIndexed { _, navGraphId ->
             val navHostFragment = obtainNavHostFragment(
                 fragmentManager,
                 navGraphId
@@ -37,7 +37,8 @@ class MainActivity : FragmentActivity() {
         fragmentManager: FragmentManager,
         navGraphId: Int
     ): NavHostFragment {
-        val existingFragment = fragmentManager.findFragmentByTag(MAIN_NAV_TAG) as NavHostFragment?
+        val existingFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
         existingFragment?.let { return it }
         val navHostFragment = NavHostFragment.create(navGraphId)
         fragmentManager.beginTransaction()

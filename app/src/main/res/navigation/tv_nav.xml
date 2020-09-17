@@ -30,5 +30,19 @@
         <deepLink
             android:id="@+id/deepLink"
             app:uri="https://www.example.com/shows/{item}" />
+        <action
+            android:id="@+id/action_detail_self"
+            app:destination="@id/detail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpToInclusive="false">
+            <argument
+                android:name="item"
+                android:defaultValue="-1"
+                app:argType="integer" />
+        </action>
     </fragment>
 </navigation>
