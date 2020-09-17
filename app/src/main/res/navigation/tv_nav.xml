@@ -28,8 +28,11 @@
             android:name="item"
             app:argType="integer" />
         <deepLink
-            android:id="@+id/deepLink"
+            android:id="@+id/deepLink_show"
             app:uri="https://www.example.com/shows/{item}" />
+        <deepLink
+            android:id="@+id/deepLink_play"
+            app:uri="https://www.example.com/shows/play/{item}" />
         <action
             android:id="@+id/action_detail_self"
             app:destination="@id/detail"
