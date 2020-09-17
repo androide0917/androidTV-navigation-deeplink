@@ -1,6 +1,5 @@
 package com.cbs.demospike
 
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -8,11 +7,15 @@ import android.os.Handler
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.BrowseFragment
 import androidx.leanback.app.BrowseSupportFragment
@@ -97,7 +100,6 @@ class MainFragment : BrowseSupportFragment() {
         val mGridPresenter = GridItemPresenter()
         val gridRowAdapter = ArrayObjectAdapter(mGridPresenter)
         gridRowAdapter.add(resources.getString(R.string.grid_view))
-        gridRowAdapter.add(getString(R.string.error_fragment))
         gridRowAdapter.add(resources.getString(R.string.personal_settings))
         rowsAdapter.add(ListRow(gridHeader, gridRowAdapter))
 
@@ -125,12 +127,7 @@ class MainFragment : BrowseSupportFragment() {
                 val action = MainFragmentDirections.actionMainToDetail(item.id)
                 view?.findNavController()?.navigate(action)
             } else if (item is String) {
-                if (item.contains(getString(R.string.error_fragment))) {
-                    val intent = Intent(activity, BrowseErrorActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(activity, item, Toast.LENGTH_SHORT).show()
-                }
+                Toast.makeText(activity, item, Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -210,5 +207,9 @@ class MainFragment : BrowseSupportFragment() {
         private val GRID_ITEM_HEIGHT = 200
         private val NUM_ROWS = 6
         private val NUM_COLS = 15
+
+        private val TIMER_DELAY = 3000L
+        private val SPINNER_WIDTH = 100
+        private val SPINNER_HEIGHT = 100
     }
 }
