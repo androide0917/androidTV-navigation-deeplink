@@ -10,24 +10,19 @@ class MainNavigationActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navGraphIds = listOf(R.navigation.tv_nav)
-        navGraphIds.forEachIndexed { _, navGraphId ->
-            val navHostFragment = obtainNavHostFragment(
-                supportFragmentManager,
-                navGraphId
-            )
-            navHostFragment.navController.handleDeepLink(intent)
-        }
+        val navHostFragment = obtainNavHostFragment(
+            supportFragmentManager
+        )
+        navHostFragment.navController.handleDeepLink(intent)
     }
 
     private fun obtainNavHostFragment(
-        fragmentManager: FragmentManager,
-        navGraphId: Int
+        fragmentManager: FragmentManager
     ): NavHostFragment {
         val existingFragment = fragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
         existingFragment?.let { return it }
-        val navHostFragment = NavHostFragment.create(navGraphId)
+        val navHostFragment = NavHostFragment.create(R.navigation.tv_nav)
         fragmentManager.beginTransaction()
             .add(R.id.nav_host_fragment, navHostFragment, MAIN_NAV_TAG)
             .commitNow()
