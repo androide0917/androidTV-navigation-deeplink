@@ -228,7 +228,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
 
 fun FragmentActivity.redirectToMain() {
     this.finish()
-    val intent = Intent(this, MainActivity::class.java)
+    val intent = Intent(this, MainNavigationActivity::class.java)
     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
     startActivity(intent)
 }
